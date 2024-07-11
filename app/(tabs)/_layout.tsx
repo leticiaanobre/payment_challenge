@@ -41,6 +41,24 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="PixPaymentScreen"
+        options={{
+          title: 'Pix',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="CreditCardPaymentScreen"
+        options={{
+          title: 'Card',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

@@ -18,13 +18,23 @@ export default function PaymentMethodScreen() {
           title="Pix"
           text="1x R$ 30.500,00"
           subText="Ganhe 3% de Cashback"
+          subTextColor="#03D69D" // Custom color for subText
+          cardText="💰 R$ 300,00 de volta no seu Pix na hora"
           onValueChange={() => handleCheckboxChange('pix')}
           checked={selectedOption === 'pix'}
         />
         <Checkbox
           title="Pix Parcelado"
           text="2x R$ 15.300,00"
-          subText=""
+          subText="Total: R$ 30.600,00"
+          subTextColor="#AFAFAF"
+          onValueChange={() => handleCheckboxChange('pix-parcelado')}
+          checked={selectedOption === 'pix-parcelado'}
+        />
+        <Checkbox
+          text="2x R$ 15.300,00"
+          subText="Total: R$ 30.600,00"
+          subTextColor="#AFAFAF"
           onValueChange={() => handleCheckboxChange('pix-parcelado')}
           checked={selectedOption === 'pix-parcelado'}
         />
@@ -55,4 +65,3 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
-

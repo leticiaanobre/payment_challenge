@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
 interface CheckboxProps {
-  title: string;
+  title?: string;
   text: string;
-  subText: string;
+  subText?: string;  
+  subTextColor?: string; 
+  cardText?: string; 
   onValueChange: (checked: boolean) => void;
   checked: boolean;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ title, text, subText, onValueChange, checked }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ title, text, subText, subTextColor, cardText, onValueChange, checked }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      {title ? (
+        <Text style={styles.title}>{title}</Text>
+      ) : null}
       <View style={styles.content}>
         <View style={styles.textContainer}>
           <Text style={styles.text}>{text}</Text>
-          <Text style={styles.subText}>{subText}</Text>
+          {subText && <Text style={[styles.subText, { color: subTextColor || '#03D69D' }]}>{subText}</Text>}
         </View>
         <TouchableOpacity
           style={[styles.checkbox, checked && styles.checked]}
@@ -25,6 +29,11 @@ const Checkbox: React.FC<CheckboxProps> = ({ title, text, subText, onValueChange
           {checked && <View style={styles.innerCheckbox} />}
         </TouchableOpacity>
       </View>
+      {cardText ? (
+        <View style={styles.card}>
+          <Text style={styles.cardText}>{cardText}</Text>
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -37,7 +46,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     width: '100%',
     borderColor: '#E5E5E5',
-    position: 'relative'
+    position: 'relative',
   },
   title: {
     position: 'absolute',
@@ -45,11 +54,11 @@ const styles = StyleSheet.create({
     left: 20,
     backgroundColor: '#E5E5E5',
     borderRadius: 16,
-    paddingHorizontal: 18,
+    paddingHorizontal: 22,
     paddingVertical: 2,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#4D4D4D'
+    color: '#4D4D4D',
   },
   content: {
     flexDirection: 'row',
@@ -66,7 +75,6 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 14,
-    color: '#03D69D',
   },
   checkbox: {
     width: 24,
@@ -84,6 +92,16 @@ const styles = StyleSheet.create({
     width: 12,
     height: 12,
     backgroundColor: '#03D69D',
+  },
+  card: {
+    backgroundColor: '#133A6F',
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 10,
+  },
+  cardText: {
+    color: '#FFF',
+    fontSize: 14,
   },
 });
 
